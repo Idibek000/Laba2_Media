@@ -2,9 +2,6 @@ import os
 import datetime
 from PIL import Image, ImageFilter, ImageOps
 
-# ==========================================
-# НАСТРОЙКА ПУТЕЙ (твой путь с картинки)
-# ==========================================
 BASE_DIR = r"C:\Users\Abdus\OneDrive\Desktop\Laba2_Media"
 
 INPUT_DIR = os.path.join(BASE_DIR, "data", "input")
@@ -33,9 +30,6 @@ def main():
     filepath = os.path.join(INPUT_DIR, filename)
 
     try:
-        # ХИТРОСТЬ ДЛЯ WINDOWS: Проверка атрибута "Только чтение"
-        # В Windows этот атрибут не вызывает PermissionError сам по себе, 
-        # поэтому проверяем его вручную, чтобы лаба отработала как надо!
         if os.path.exists(filepath):
             if not os.access(filepath, os.W_OK) or (os.stat(filepath).st_file_attributes & 1):
                 raise PermissionError
